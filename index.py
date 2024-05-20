@@ -1,18 +1,14 @@
 import streamlit as st
 import requests
-import environ
 
 from func import frenchy_format
 
-env = environ.Env()
-environ.Env.read_env(".env")
-token = env("TOKEN")
 
 url = "https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&region=FR"
 
 headers = {
     "accept": "application/json",
-    "Authorization": f"Bearer {token}"
+    "Authorization": f"Bearer {st.secrets["TOKEN"]}"
 }
 
 response = requests.get(url, headers=headers).json()
