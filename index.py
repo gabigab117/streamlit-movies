@@ -8,7 +8,7 @@ url = "https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&region=FR"
 
 headers = {
     "accept": "application/json",
-    "Authorization": f"Bearer {st.secrets["TOKEN"]}"
+    "Authorization": f"Bearer {st.secrets['TOKEN']}"
 }
 
 response = requests.get(url, headers=headers).json()
