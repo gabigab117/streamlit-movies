@@ -1,5 +1,5 @@
 import streamlit as st
-import requests
+from urllib import request
 
 from func import frenchy_format
 
@@ -13,7 +13,8 @@ headers = {
     "Authorization": f"Bearer {st.secrets['TOKEN']}"
 }
 
-response = requests.get(url, headers=headers).json()
+params = request.Request(url=url, headers=headers)
+response = request.urlopen(params).read()
 print(type(response))
 print(response)
 
