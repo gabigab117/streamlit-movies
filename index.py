@@ -1,5 +1,6 @@
 import streamlit as st
 from urllib import request
+import json
 
 from func import frenchy_format
 
@@ -14,14 +15,15 @@ headers = {
 }
 
 params = request.Request(url=url, headers=headers)
-response = request.urlopen(params).read()
-print(type(response))
-print(response)
+response = request.urlopen(params)
+data = json.load(response)
+print(type(data))
+print(data)
 
 
 st.title("Les films du moment")
 
-for el in response["results"]:
+for el in data["results"]:
     st.header(el["title"])
     st.image(f"https://image.tmdb.org/t/p/w500{el['poster_path']}")
     st.subheader(el["overview"])
